@@ -53,6 +53,20 @@
       color: var(--text);
     }
 
+    .brand-wrapper {
+	    display: flex;
+	    align-items: center;
+	    gap: 10px; /* Jarak antara foto dan teks nama */
+    }
+	
+	  .header-logo {
+	    width: 44px;
+	    height: 44px;
+	    border-radius: 50%; /* Membuat foto menjadi bulat. Hapus baris ini jika ingin kotak */
+	    object-fit: cover;  /* Menjaga foto agar tidak gepeng/terdistorsi */
+	    border: 1px solid var(--border);
+    }
+
     .badge-meja {
       background-color: #ecfdf5;
       color: var(--primary-dark);
@@ -315,13 +329,17 @@
 
   <!-- HEADER -->
   <header>
-    <div class="header-content">
+  <div class="header-content">
+    <div class="brand-wrapper">
+      <!-- Ganti 'logo.jpg' dengan nama file foto atau link foto Anda -->
+      <img src="https://images.unsplash.com/photo-1622397800151-961179290144?w=300" alt="Logo Toko" class="header-logo">
       <div>
         <div class="brand-title">Kedai Kopi & Resto Kita</div>
         <small style="color: var(--text-muted); font-size: 0.75rem;">Menu Digital Resmi</small>
       </div>
-      <div id="table-display" class="badge-meja">Memuat Meja...</div>
     </div>
+    <div id="table-display" class="badge-meja">Memuat Meja...</div>
+  </div>
   </header>
 
   <!-- FILTER KATEGORI -->
