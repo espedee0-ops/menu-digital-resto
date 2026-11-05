@@ -489,6 +489,7 @@
     function tambahItem(id) {
       keranjang[id] = (keranjang[id] || 0) + 1;
       sinkronisasiKeranjang();
+      renderModalItems();
     }
 
     function kurangiItem(id) {
