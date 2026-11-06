@@ -21,6 +21,18 @@
       margin: 0;
       padding: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+      /* Mencegah teks bisa disorot atau diblok */
+      -webkit-user-select: none; /* Safari / iPhone */
+      -moz-user-select: none;    /* Firefox */
+      -ms-user-select: none;     /* Edge */
+      user-select: none;         /* Standar Browser Modern */
+    }
+
+/* Pengecualian: Kolom input nama & catatan tetap harus bisa diketik */
+input, textarea {
+  -webkit-user-select: auto;
+  user-select: auto;
     }
 
     body {
@@ -598,6 +610,46 @@
 
     // Inisialisasi tampilan pertama kali
     renderMenu();
+
+    // 1. Matikan Klik Kanan (Context Menu)
+    document.addEventListener("contextmenu", function(e) {
+      e.preventDefault();
+    }, false);
+    
+    // 2. Matikan Perintah Copy dan Cut
+    document.addEventListener("copy", function(e) {
+      e.preventDefault();
+    });
+    document.addEventListener("cut", function(e) {
+      e.preventDefault();
+    });
+    
+    // 3. Matikan Tombol Pintas Keyboard Pengembang (Inspect Element)
+    document.addEventListener("keydown", function(e) {
+      // Matikan F12
+      if (e.key === "F12" || e.keyCode === 123) {
+        e.preventDefault();
+        return false;
+      }
+      
+      // Matikan Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (Buka Developer Tools)
+      if (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "i" || e.key === "J" || e.key === "j" || e.key === "C" || e.key === "c")) {
+        e.preventDefault();
+        return false;
+      }
+      
+      // Matikan Ctrl+U (Lihat Source Code / View Source)
+      if (e.ctrlKey && (e.key === "U" || e.key === "u")) {
+        e.preventDefault();
+        return false;
+      }
+      
+      // Matikan Ctrl+S (Simpan Halaman Web)
+      if (e.ctrlKey && (e.key === "S" || e.key === "s")) {
+        e.preventDefault();
+        return false;
+      }
+    });
   </script>
 </body>
 </html>
